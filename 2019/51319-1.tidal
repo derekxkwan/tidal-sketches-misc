@@ -1,0 +1,38 @@
+d1
+  $ fast 2
+  $ iter 4
+  $ sometimesBy 0.75
+  ((stut 4 0.75 0.75) . (|*| gain 0.5) . (# lpf 750) . (# coarse 4))
+  $ speed "1 1 <1 1*2> <1 1*3 1*2>"
+  # gain (range 0.75 1 $ rand)
+  # sound "808bd"
+  # cut 1
+  # end 0.5
+  
+d2
+  $ someCyclesBy 0.25 (rot (cycleChoose [1,2]))
+  $ sometimesBy 0.75 (|*| speed 2)
+  $ stut 8 0.125 0.125
+  $ chop (cycleChoose [4,2,4,4,6,8,4,4,4])
+  $ speed " < [~ -1 ~ ~] [~ -1] ~ ~>"
+  # sound "808lt"
+  # cut 2
+  # end 0.25
+
+d3
+  $ someCyclesBy 0.33
+    (superimpose
+   ((fast (cycleChoose [2 .. 4])). (# gain (choose [0.5, 0.55 .. 0.75]) )
+      . (# coarse (choose [5 ..  10])) . (|*| speed (range 0.75 1 $ rand))
+    . (# bpf (cycleChoose [3000, 3100 .. 7500]))) . (# end 0.35))
+  $ fast (choose [2,2,2,2,2,2,4,8])
+  $ chop 4
+  $ speed "1 1"
+  # fastcat [gain "1", gain (range 0.75 1 $ rand)]
+  # fastcat [pan "0.5", pan (rand)]
+  # sound "808oh:0"
+  # legato 0.75
+  # lpf 750
+  # cut 3
+
+  hush
