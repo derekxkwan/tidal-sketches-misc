@@ -1,0 +1,75 @@
+let np = [n "4 3", n "4 [3 3]", n "[4 3] [~ 3]", n " 5 4 3 2", n "7 7 9 ~"] in
+d1
+  $ someCyclesBy 0.5 (fast (cycleChoose [2, 4]))
+  $ chop (choose [1,1,1,1,1,1,2,4,4])
+  $ someCyclesBy 0.05 (mask "~")
+  $ someCyclesBy 0.5 (|*| speed (choose [2, 3]))
+  $ within (0, 0.25) (degradeBy 0.75)
+  $ ply "<2 4> 1"
+  $ randcat np
+  # sound "rave"
+  # pan (cycleChoose [0.25, 0.75])
+  # cut 1
+  # orbit 1
+
+d2
+  $ someCyclesBy 0.5 ((fast (cycleChoose [2, 4])) . (within (0.25,1) (degradeBy 0.5)))
+  $ sound "bd:1*4"
+  # speed 0.75
+  # coarse 10
+  # orbit 1
+
+
+d3
+  $ someCyclesBy 0.5 ((fast 2) . (degradeBy 0.5))
+  $ randcat (map (\x -> n x) ["1 1*4 1 1", "1 1*8 1 1"])
+  # nudge 0.25
+  # sound "hmm"
+  # begin 0.25
+  # speed (choose [1, 2, 4])
+  # cut 2
+  # sustain 0.1
+  # orbit 1
+
+d4
+  $ someCyclesBy 0.25 (superimpose (
+                       (fast 4) .
+                       (|*| speed "-2") .
+                       (within (0.25,1) (degradeBy 0.25)) .
+                       (# pan (choose [0, 1])) .
+                       (# gain 0.75) .
+                       (# coarse 10) .
+                       (# delayfb 0.5) .
+                       (# delay 0.25) .
+                       (# delaytime 1) .
+                       (# orbit 2)
+                       ))
+  $ randcat [speed "1 1*4 1 1", speed "1 1*8 1 1", speed "1 1*4 [1 1] 1", speed "1 1*8 [1 1] 1"]
+  # sound "ho hc [ho hc] hc"
+  # nudge 0.25
+  # cut 3
+  # orbit 1
+
+
+d5
+  $ someCyclesBy 0.25 (ply "4 1 4 1")
+  $ someCyclesBy 0.25
+  ((|*| speed "2 1 2 1") . (# pan "0 0.5 1 0.5"))
+  $ someCyclesBy 0.25 (rot 2)
+  $ randcat [speed " ~ 1 ~ 1",
+             speed "~ 1 ~ 1*2",
+             speed "-1 1 ~ 1",
+             speed "-1 1 ~ 1*2",
+             speed "1 1 ~ 1*2"]
+  # sound "bark:1"
+  # cut 6
+  # orbit 1
+
+hush
+                      ))
+  $ randcat [speed "[~ 1]*2", speed "~ 1 ~ 1*8"]
+  # sustain "1 0.1"
+  # sound "ho"
+  # cut 3
+  
+hush
