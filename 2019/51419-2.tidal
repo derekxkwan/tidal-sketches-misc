@@ -50,7 +50,7 @@ d4
   # cut 3
   # orbit 1
 
-
+-- custom sample
 d5
   $ someCyclesBy 0.25 (ply "4 1 4 1")
   $ someCyclesBy 0.25
@@ -65,11 +65,4 @@ d5
   # cut 6
   # orbit 1
 
-hush
-                      ))
-  $ randcat [speed "[~ 1]*2", speed "~ 1 ~ 1*8"]
-  # sustain "1 0.1"
-  # sound "ho"
-  # cut 3
-  
 hush
