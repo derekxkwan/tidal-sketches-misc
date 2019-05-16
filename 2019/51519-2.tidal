@@ -1,4 +1,4 @@
--- experiments with diff equal temperaments and ostinatoes "over barlines"
+-- experiments with diff equal temperaments and ostinatos "over barlines"
 
 d1
   $ someCyclesBy 0.25 (superimpose(
