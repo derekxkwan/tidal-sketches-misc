@@ -1,0 +1,21 @@
+-- experiments with diff equal temperaments and ostinatoes "over barlines"
+
+d1
+  $ someCyclesBy 0.25 (superimpose(
+                          (# lpf 5000) . (|+| n 12) . (fast 2) .
+                          (# gain 0.65) . (|+| pan 1) . (# coarse 8) .
+                          ))
+  $ squeeze "[2 2 2 2]@3 1@1" (map (\x -> n (toScale [0, 0.75 .. 11.25] x - 24)) ["0 2 4 7 9", "0 2 4 7", "0 2 4"])
+  # sound "superpiano"  # sustain 0.05 # enhance 0.5 # pan 1 # lpf 750
+
+
+d2
+  $ someCyclesBy 0.25 (superimpose (
+                          (# lpf 5000) .(|+| n 12) . (fast 2) .
+                          (# gain 0.65) . (|+| pan 1) . (# coarse 8) .
+                          ))
+  $ slow 1.5
+  $ squeeze "[0 0 0 0]@5 1@1" (map (\x -> n (toScale [0, 0.75 .. 11.25] x - 12)) ["0 2 4 7 9", "0 2 4 7", "0 2 4"])
+  # sound "superpiano"  # sustain 0.05 # enhance 0.5 # pan 0 # lpf 750
+
+hush 
