@@ -1,0 +1,57 @@
+setcps 0.35
+
+hush
+
+d3
+  $ fix ((#delayt 0.25).(# delay 0.5) . (# delayfb 0.5) . (#orbit 2) .(# pan (range 0.25 0.75 $ rand)))  (speed "[3,2.25]")
+  $ sometimesBy 0.25 (|* speed (-1))
+  $ sometimesBy 0.5 (ply 2)
+  $ speed "[1 0.75]*8"
+  # sound "hc:2*16"
+  |* speed (-3)
+  # gain 0.5
+  # sustain 0.03
+  # cut 4
+  # coarse 4
+  # orbit 0
+
+  
+d1
+  $ fix (# accelerate (choose [(-0.5), 0.5])) (speed "[-0.75, -0.375, -1.5]")
+  $ sometimesBy 0.25 (stut 4 0.25 0.5)
+  $ sometimesBy 0.5 (|* speed (choose [(-1),2,(-2), (-0.5), 0.5]))
+  $ within (0.25,1) (sometimesBy 0.25 (fast 2))
+  $ sometimesBy 0.5 (ply (choose [2,4]))
+  $ sound "808bd*2 [808sd 808bd] [~ ~ ~ 808bd] 808sd"
+  # n 2
+  # cut 3
+  # speed 0.75
+  # coarse 6
+  # lpf 5000
+  # orbit 0
+
+d2
+  $ sometimesBy 0.75 (superimpose ((|+| lpf 1000) .
+                                   (|+ n 36) . (stut 4 0.125 0.5) . (# coarse 6) . (|*| gain 0.75) .
+                                  (fast 4).(degradeBy 0.5) . (# cut 2) . (ply (choose [2,1])) .(# pan (rand))))
+  $ sometimesBy 0.25 ((# attack 1) . (# sustain 3) .  (# cut 6) . (#lpf 200) .
+                     (# room 0.75) . (# size 0.85) . (# dry 0) . (# orbit 2))
+  $ someCyclesBy 0.25 (brak)
+  $ someCyclesBy 0.25 (rev)
+  $ sometimesBy 0.5 (|- n (choose [(-12),(-24), 0, 12]))
+  $ someCyclesBy 0.25 (outside 6 (scramble 6))
+  $ sometimesBy 0.5 (ply (choose [4, 8, 12]))
+  $ sometimesBy 0.5 (degradeBy (cycleChoose [0.75, 0.5, 0.9]))
+  $ sometimesBy 0.5 (fast 2)
+  $ n (scale  "major" "<[~ [~ ~ 4 2]] [~ [~ ~ 6 4]] [[~ ~ ~ 0] ~] [[~ ~ 4 2] ~] [[~ ~ 6 4] [~ ~ 8 0]]>" -24) 
+  # s  "superpiano"
+  # gain 0.75
+  # cut 1
+  # smear 0.5
+  # sustain 1.5
+  # lpf 500
+  # coarse 4
+  # phasr 60
+  # phasdp 0.3
+  # decay 0.15
+  # orbit 0
