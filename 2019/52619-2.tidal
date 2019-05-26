@@ -1,0 +1,48 @@
+-- channeling mark fell
+
+let p1 = "c4'maj7"
+    p2 = "e4'min7"
+    p3 = "f4'maj7"
+    p4 = "a3'min7"
+  in
+d1
+  -- $ sometimesBy 0.15 ((arp "up"))
+  $ sometimesBy 0.5 (|+ n 12)
+  $ sometimesBy 0.15 (fast 2)
+  $ fast 4
+  $ struct (randcat ["t t t ~ ", "t t ~ t", "t*4"])
+  $ n (randcat [p1,p1,p1,p1,p2,p3, p4])
+  # s "supersaw"
+  # leslie 0.5
+  # sustain 0.05
+
+d2
+  -- $someCyclesBy 0.25 (|* cps "1.5")
+  $ struct (randcat ["t*4", "t t*2 t t"])
+  $ speed "1"
+  # s "house"
+  # speed 0.5
+  # shape 0.5
+  # enhance 0.5
+  # cps "0.5"
+
+let p1 = "~ hc"
+    p2 = "[~ hc] ho"
+    in
+d3
+  $ sometimesBy 0.15 (|* speed "-1")
+  $ fast 4
+  $ s (randcat $ (take 4 (repeat p1)) ++ [p2])
+  # cut 1
+
+let p1 = "~ t"
+    p2 = "~ [t ~ ~ t]"
+    p3 = "~ [t t ~ t]"
+in
+d4
+  $ fast 2
+  $ struct (randcat (take 4 (repeat p1) ++ [p2,p3]))
+  $ s "cp:2"
+  # cut 2
+
+  hush
