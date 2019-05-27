@@ -1,0 +1,60 @@
+d1
+  $ fast 4
+  $ sometimesBy 0.5 (jux (rev))
+  $ sometimesBy 0.25 (|* speed (choose [2,3,4]))
+  $ sometimesBy 0.25 (ply (choose [2, 3]))
+  $ trunc "< 1 1 1 1 0.1>"
+  $ every 2 (iter 4)
+  $ n  (randcat [" 0 1 3 2", "5 4 4 5", "6 9 6 3", "6*8", "7*8", "10*6", "12*6"])
+  # s "glitch"
+  # cut 1
+
+d1 silence
+d2 silence
+
+d2
+  $ someCyclesBy 0.5 (slow 4)
+  $ struct ("<[[t [~ t t]] ~] ~>")
+  $ s "glitch:0"
+  # cut 2
+  # speed 0.5
+  # sustain 0.5
+
+d3 silence
+
+d3
+  $ sometimesBy 0.25 (|+ n (cycleChoose [7,3,4]))
+  $ someCyclesBy 0.35 ((fast (cycleChoose [1.5, 2])) . (# pan (cycleChoose [0.25, 0.26 .. 0.75])) . (# shape 0.75) .
+                       (|* sustain 0.4). (|* coarse 2) . (# leslie (sine)) . (# lrate 7) . (#lsize 2) . (# orbit 1))
+  $ fast 4
+  $ within (0.25, 1) (someCyclesBy 0.25 (degradeBy 0.25))
+  $ someCyclesBy 0.5 (mask "~")
+  $ n "c5'maj7*4" 
+  # s "superchip"
+  # lpf 500
+  # sustain 0.1
+  # coarse 8
+  # orbit 0
+
+d4
+  $ sometimesBy 0.25 (fast 4)
+  $ sustain "0.2 0.01 0.01 0.01"
+  # s "house"
+  # orbit 0
+
+d5
+  $ sometimesBy 0.25 ((ply (choose [4, 8])) . (# sustain 0.05) . (|* speed (choose [(-2), 2, (-3), 3])))
+  $ struct (randcat ["t t t t"])
+  $ s "glitch"
+  # cut 3
+  # coarse 4
+  # lpf 2000
+  # n (choose [2,3])
+  # vowel (choose ["a", "e"])
+  # pan (range 0.25 0.75 $ rand)
+
+hush
+
+d4 silence
+d5 silence
+d6 silence
