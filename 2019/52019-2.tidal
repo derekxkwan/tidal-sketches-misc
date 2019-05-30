@@ -1,0 +1,49 @@
+setcps(0.5)
+
+-- weird beepy groove 
+
+d1
+  $ sometimesBy 0.25 (degradeBy 0.15)
+  $ someCyclesBy 0.5 (iter 4)
+  $ sometimesBy 0.15 ((# coarse 8) . (|+ n 12))
+  $ sometimesBy 0.25 (fast 2) 
+  $ sometimesBy 0.25 (ply 4)
+  $ n (scale  "major" "<[0,6] [0,6] [0,6] [2,8]>" -12)
+  # s "superhex"
+  # lpf 500
+  # sustain 0.25
+  # cut 1
+
+d2
+  $ sometimesBy 0.25 (ghost)
+  $ sometimesBy 0.25 (iter 4)
+  $ sometimesBy 0.25 (ply 2)
+  $ sometimesBy 0.25 (fast 2)
+  $ struct ("t t*4 t t*4") 
+  $ s "superhat"
+  # legato 0.05
+  # lpf 1000
+  # lpq 1
+  # cut 2
+
+d3
+  $ sometimesBy 0.25 (ghost)
+  $ sometimesBy 0.25 (ply 4)
+  $ sometimesBy 0.25 ((fast (choose [2 .. 4])) . (|* speed (choose [2 .. 6])))
+  $ n (randcat ["1", "1 1", "~", "2 2 2 2"])
+  # s "sine"
+  # sustain 0.1
+  # gain 1
+  # speed 8
+  # pan (rand)
+  # cut 3
+
+d4
+  $ sometimesBy 0.25 (ply 2)
+  $ sometimesBy 0.25 ((|- n 1) . (# sustain 0.1) . (|* speed 0.5))
+  $ sometimesBy 0.25 (ghost)
+  $ sometimesBy 0.25 (fast 2)
+  $ struct (randcat ["t t*2 ~ ~", "t*4 ~ ~ ~", "t*2", "t ~ t t"])
+  $ s "808bd:1"
+  # cut 4
+  # speed 1
