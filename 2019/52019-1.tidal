@@ -1,0 +1,31 @@
+hush
+
+-- kendrick freestyle-ish
+
+d1
+  $ sometimesBy 0.2 (|+ n (choose [1 .. 20]))
+  $ sometimesBy 0.1  ((# hpf 1000) . (# coarse 6) . (# delayfb 0.35). (#delay 0.5) . (# delayt 0.25) . (# orbit 1))
+  $ sometimesBy 0.1 (|* speed (-1))
+  $ sometimesBy 0.25 (fast (choose [2,4,8]))
+  $ slice 64 "<8 8 8 1>"
+  $ s "chineseprayer"
+  # cut 1
+  # orbit 0
+
+d2
+  $ sometimesBy 0.25 ((fast 2) . (# sustain 0.05) . (|+ n (choose [1 .. 10])))
+  $ sometimesBy 0.25 ((fast (choose [2,4])). (# sustain 0.1) . (|* speed (-2)))
+  $ speed "[~ 1] 1 [1 ~ ~ 1] 1*2"
+  # s "hh-open:0"
+  # cut 2
+  # lpf 3000
+  # orbit 0
+
+d3
+  $ sometimesBy 0.25 ((fast 2) . (|* speed 0.75))
+  $ n (randcat ["1 0*2", "1", "2 3*4 [~ 2] 2"])
+  # s "kick"
+  # cut 3
+  # lpf 2000
+  # speed 1
+  # orbit 0
