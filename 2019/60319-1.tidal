@@ -1,0 +1,24 @@
+-- experiments with sustained notes
+
+d1
+  $ slow 2
+  $ struct ("<t t>")
+  $ n (scale "lydian" (choose [0, 2, 5, -3]) - 36)
+  # s "supersaw" # sustain 3 # attack 1 # hold 2
+  # lpf 1000
+  # orbit 1 # delayfb 0.75 # delay 0.5 # delayt 0.25
+  # pan (rand)
+
+
+d2
+  $ degradeBy 0.75
+  $ fast (choose [8, 16])
+  $ struct ("t")
+  $ n (scale "lydian" (choose [-2, 0,1,2, 3]) + 12)
+  # s "supervibe"
+  # lpf 3000
+  # sustain 0.01
+  # vowel (choose  ["o", "u"])
+  # coarse 4 # crush 8 # ring 50 # ringf 100
+  # attack 0.01 # release 0.25 # hold 0.1
+  # orbit 2 # room 0.1 # size 0.9 # dry (choose (replicate 20 0.5 ++ [0.01]))
