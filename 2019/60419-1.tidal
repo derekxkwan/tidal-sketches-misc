@@ -1,0 +1,40 @@
+-- octavey sort of jam
+
+d1
+  $ sometimesBy 0.25 ((|+ n (-12)) . (# room 0.5) . (# dry 0.1) . (# size 0.75))
+  $ sometimesBy 0.25 (stut 4 0.125 0.25)
+  $ slow 2
+  $ n ("0" - 24)
+  # s "supersquare"
+  # sustain 0.1
+  # orbit 0 # delay 0.5 # delayfb 0.5 # delayt 0.25
+  # lpf 500
+
+d2
+  $ someCyclesBy 0.5 (superimpose ((degradeBy 0.25) . (|+ n (-24)) . (slow 2) . (|* sustain 2)))
+  $ sometimesBy 0.25 ((# room 0.5) . (# size 0.5) . (# dry 0.1) . (# orbit 2))
+  $ sometimesBy 0.25 (stut 8 0.125 0.25)
+  $ degradeBy 0.75
+  $ fast 8
+  $ sometimesBy 0.8 (|+ n (choose [-12, 12, 24, 48]))
+  $ struct ("t*4")
+  $ n "12"
+  # s "superpiano"
+  # sustain (range 0.005 0.05 $ sine)
+  # orbit 1
+  # crush (choose [4,6,8,12]) #  coarse (choose [6,8 .. 30])
+  # pan (rand) # lpf 1000 # gain (range 0.25 1.0 $ rand)
+
+d3
+  $ someCyclesBy 0.5 (superimpose ((|* speed (cycleChoose [0.125, 0.25])) . (slow (20/8)) . (|* sustain 3) . (|* gain 0.85)))
+  $ sometimesBy 0.25 (fast 2)
+  $ fast 4
+  $ gain (randcat ["1 0.75 0.75 0.75", "1 0.75 0.75 1"])
+  # s "hc"
+  # sustain 0.005
+  # pan (cycleChoose [0,1])
+  # orbit 1
+  # speed 3
+  # lpf 2000
+  
+hush
