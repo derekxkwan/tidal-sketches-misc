@@ -1,0 +1,47 @@
+hush
+
+
+-- relatively straightforward busy pitched triangle jam
+
+d1
+  $ sometimesBy 0.25 (ghost)
+  $ someCyclesBy 0.25 ((ply 4) . (# legato 1))
+  $ fast 4
+  $ speed "1 1 1 1"
+  # s "triangle"
+  # pan "<0 1>"
+  # gain 0.75
+  # legato 5
+
+
+d2
+  $ sometimesBy 0.25 (ghost)
+  $ someCyclesBy 0.25 ((ply 4) . (# legato 1))
+  $ fast 4
+  $ randcat [up "~ -6 ~ ~", slow (2/3) $ up "~ -5 ~"]
+  # s "triangle"
+  # gain 0.75
+  # pan "<0 1>"
+  # legato 5
+
+
+d3
+  $ sometimesBy 0.25 (ghost)
+  $ someCyclesBy 0.3 ((fast (2/3)) . (|+ up (-1)))
+  $ fast 4
+  $ up "0 ~ 0 ~"
+  # s "triangle"
+  # pan "<1 0>"
+  # gain 0.75
+  # legato 5
+  
+d4
+  $ someCyclesBy 0.25 ((fast (cycleChoose [8, 16])) . (# pan (saw)) . (|* speed (-1)) . (# end 0.25) . (degradeBy 0.250))
+  $ sometimesBy 0.25 (ghost)
+  $ slow 2
+  $ up "-12"
+  # s "triangle"
+  # pan "<1 0>"
+  # gain 0.75
+  # legato 5
+
