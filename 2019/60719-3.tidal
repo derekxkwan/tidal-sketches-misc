@@ -1,0 +1,100 @@
+-- ambient cymbal jam (bowed + closed)
+
+d1
+  $ someCyclesBy 0.25 (superimpose ((rev) . (|+ pan 1)))
+  $ slow 5
+  $ s "bowedhh"
+  # speed 0.5
+  # pan 0
+  # gain 0.75
+  # delayfb 0.5 # delay 0.5 # delayt 0.5
+  # orbit 0
+
+d2
+  $ someCyclesBy 0.25 (superimpose ((rev) . (|+ pan 1)))
+  $ slow 6
+  $ s "bowedhh:1"
+  # speed 0.5
+  # pan 1
+  # gain 0.75
+  # delayfb 0.5 # delay 0.5 # delayt 0.35
+  # orbit 1
+
+d3
+  $ someCyclesBy 0.25 (superimpose ((rev) . (|+ pan 1)))
+  $ slow 4
+  $ s "bowedhh:2"
+  # speed 0.75
+  # pan 0.25
+  # gain 0.75
+  # delayfb 0.5 # delay 0.5 # delayt 0.25
+  # orbit 2
+
+
+d4
+  $ someCyclesBy 0.25 (superimpose ((rev) . (|+ pan 1)))
+  $ slow 3.5
+  $ s "bowedhh:4"
+  # speed 0.75
+  # pan 0.75
+  # gain 0.75
+  # delayfb 0.5 # delay 0.5 # delayt 0.4
+  # orbit 3
+
+d5
+  $ slow 3
+  $ gain "1 0.75 0.75 0.75 0.75"
+  # s "hh-closed"
+  # orbit 4 # room 0.75 # size 0.75 # dry 0.1
+  # lpf 1000 # pan 0.1
+
+d6
+  $ slow 4
+  $ gain "1 0.75 0.75 0.75 0.75 0.75"
+  # s "hh-closed:3"
+  # orbit 4 # room 0.75 # size 0.75 # dry 0.1
+  # lpf 2000 # pan 0.9 |* gain 1.25
+
+d7
+  $ slow 5
+  $ gain "1 0.75 0.75 0.75 0.75 0.75 0.75"
+  # s "hh-closed:3"
+  # orbit 4 # room 0.75 # size 0.75 # dry 0.1
+  # lpf 2000 # pan 0.2 |* gain 1.25
+
+d8
+  $ slow 6
+  $ gain "1 0.75 0.75 0.75 0.75 0.75 0.75 0.75"
+  # s "hh-closed:4"
+  # orbit 4 # room 0.75 # size 0.75 # dry 0.1
+  # lpf 2000 # pan 0.8 |* gain 1.25
+
+d9
+  $ slow 7
+  $ gain "1 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75"
+  # s "hh-closed:5"
+  # orbit 4 # room 0.75 # size 0.75 # dry 0.1
+  # lpf 2000 # pan 0.3 |* gain 1.25
+
+d10
+  $ slow 8
+  $ gain "1 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75"
+  # s "hh-closed:6"
+  # orbit 4 # room 0.75 # size 0.75 # dry 0.1
+  # lpf 2000 # pan 0.7 |* gain 1.25
+
+d11
+  $ slow 9
+  $ gain "1 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75"
+  # s "hh-closed:7"
+  # orbit 4 # room 0.75 # size 0.75 # dry 0.1
+  # lpf 2000 # pan 0.4 |* gain 1.25
+
+d12
+  $ slow 10
+  $ gain "1 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75"
+  # s "hh-closed:8"
+  # orbit 4 # room 0.75 # size 0.75 # dry 0.1
+  # lpf 2000 # pan 0.6 |* gain 1.25
+
+hush
