@@ -1,0 +1,51 @@
+hush
+
+--  reverse shepherd-toney woodblocks
+d2
+  $ stutWith 16 (1/6) (|* speed (0.9))
+  $ speed (cat ["1", "~"])
+  # s "wood"
+  # pan (segment 1 $ rand)
+  
+d3
+  $ stutWith 24 (1/9) (|* speed (0.9))
+  $ speed (cat ["1", "~", "~"])
+  # s "wood"
+  # pan (segment 1 $ rand)
+  # speed 1.5
+
+d4
+  $ stutWith 32 (1/8) (|* speed (0.9))
+  $ speed (cat ["1", "~", "~", "~"])
+  # s "wood"
+  # pan (segment 1 $ rand)
+  # speed 1.75
+
+d5
+  $ stutWith 40 (1/10) (|* speed (0.9))
+  $ speed (cat ["1", "~", "~", "~", "~"])
+  # s "wood"
+  # pan (segment 1 $ rand)
+  # speed 2
+
+d6
+  $ stutWith 48 (1/11) (|* speed (0.9))
+  $ speed (cat ["1", "~", "~", "~", "~", "~"])
+  # s "wood"
+  # pan (segment 1 $ rand)
+  # speed 2.25
+
+d7
+  $ stutWith 56 (1/12) (|* speed (0.9))
+  $ speed (cat ["1", "~", "~", "~", "~", "~", "~"])
+  # s "wood"
+  # pan (segment 1 $ rand)
+  # speed 2.50
+
+d1
+  $ someCyclesBy 0.25 (stutWith (cycleChoose [4 .. 8]) (1/(cycleChoose [8,12,16])) (|* speed (-0.99)))
+  $ speed (cat [randcat (["0.25", "[0.25 0.3? ~ ~] ~ ~"]), "~"])
+  # s "wood"
+  # lpf 1500
+  # gain 1.5
+
