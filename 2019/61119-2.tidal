@@ -1,0 +1,31 @@
+hush
+
+-- a rockish numetally kinda synthy thing
+
+d1
+  $ someCyclesBy 0.25 (superimpose ((# hpf 1000) . (#cut 1) . (|+ n 24)  . (fast 4) . (# sustain 0.5)))
+  $ every 5((# shape 0.85) . (# lpf 500))
+  $ every 4 ((fast 2) . (|+ n 6))
+  $ every 3 (iter 4)
+  $ n (scale "chinese" (randcat ["0 4", "0 [4 5]", "0 [4 .. 7]"]))  |- n 24
+  # s "superchip"
+  # orbit 0
+
+d2
+  $ someCyclesBy 0.25 (superimpose ((# lpf 500) . (#cut 2) . (|- n 24)  . (slow 4) . (# sustain 0.5)))
+  $ someCyclesBy 0.33 (
+  (# delayt 0.25) . (#delayfb 0.75) . (#delay 0.5) . (# lpf 3000) . (# coarse 8) . (# orbit 1))
+  $ fast (cycleChoose [1,2,4])
+  $ n (scale "chinese" (randcat ["5", "5 4", "5 4 ~ 2", "7 5 4 3"])) |+ n 24
+  # s "superchip"
+  # sustain 0.1
+  # pan (segment 1 $ rand)
+  # orbit 0
+
+d3
+  $ struct (randcat ["<t ~>", "<t [~ ~ ~ [~ t]]>"])
+  $ s "bd"
+  # speed 0.5
+  # orbit 0
+
+hush  
