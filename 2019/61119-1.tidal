@@ -1,0 +1,35 @@
+-- old-timey tv beats
+
+hush
+
+d1
+  $ someCyclesBy 0.25 (superimpose ((fast 2) . (|* speed (-1)) . (# cut 2)))
+  $ someCyclesBy 0.25 (degradeBy 0.5)
+  $ someCyclesBy 0.25 (shuffle 4)
+  $ stutWith 8 "0.125" (|- up (cycleChoose [1, (-1)]))
+  $ someCyclesBy 0.25 (ply (choose [4,8,16]))
+  $ slice 64 (randcat ["0 2", " ~ 3", "~ [4 5]*2", "~", "4 5 4", "32 .. 16"])
+  $ s "oldtv"
+  # cut 1
+
+d2
+  $ someCyclesBy 0.5 (mask "~")
+  $ someCyclesBy 0.5 (stutWith 8 "0.125" (|- up (cycleChoose [1, (-1)])))
+  $ slice 64 (randcat ["1", "1 10", "1 10*4", "15 16 17"])
+  $ s "oldtv"
+  # n 2
+  # cut 2
+  # pan (segment 1 $ rand)
+
+d3
+  $ someCyclesBy 0.5 ((# coarse 8) . (# lpf 100) . (degradeBy 0.5))
+  $ someCyclesBy 0.5 (ply 2)
+  $ fast 2
+  $ n (randcat ["0*2", "0 ~ ~ 0"])
+  # s "bd"
+
+d4
+  $ someCyclesBy 0.5 ((# coarse 8) . (# hpf 5000) . (degradeBy 0.5))
+  $ someCyclesBy 0.5 (stutWith 4 (1/16) (|+ up (cycleChoose [2,(-2)])))
+  $ up "~ 0  ~ 0" 
+  # s "cp"
