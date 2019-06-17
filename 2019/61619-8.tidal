@@ -1,0 +1,30 @@
+-- cheesy but glitchy I-IV rock beat
+
+d1
+  $ sometimesBy 0.25 (ply (choose [2,4]))
+  $ sometimesBy 0.75 (|+ n (choose [12, 24]))
+  $ fix (someCyclesBy 0.5 (within(0.25,1) (degradeBy 0.5))) (s  "superssin")
+  $ fix (someCyclesBy 0.5 (within(0.25,1) (degradeBy 0.5))) (s  "superpiano")
+  $ n (scale "major" (segment (cycleChoose [4,8, 16]) $ choose[0,2,4,6,8,9])) |+ n "<12 12 5 5>" |- n 24
+  # stack ["superpiano"  #cut 0 |* coarse 4, "superssin" # gain 0.75 |+ n (choose [12, (-12)]) # cut 1]
+  # coarse 8
+  # lpf 1000
+  # orbit 0
+
+d2
+  $ fast 2
+  $ someCyclesBy 0.5 (within(0.25,1) (ply 2))
+  $ s (randcat ["bd*2 bd sd:1? ~", "bd ~ sd:1? bd", "bd sd:1?"])
+  # lpf 2000 # coarse 18
+  # cut 2
+  # orbit 0
+
+d3
+  $ whenmod 4 6 (mask ("~"))
+  $ someCyclesBy 0.5 (within(0.25,1) (ply 2))
+  $ s "~ cp"
+  # orbit 1 # room 0.75 # size 0.9 # lpf 750 # dry 0.1 # crush 8
+
+xfadeIn 3 4 silence
+xfadeIn 2 4 silence
+xfadeIn 1 4 silence
