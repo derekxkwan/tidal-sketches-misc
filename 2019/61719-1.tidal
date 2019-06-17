@@ -1,0 +1,31 @@
+-- cover/homage to songs about heads collapsing and mystical creatures misplacing related things
+d1
+  $ sometimesBy 0.45 (superimpose ((slow 2) . (# pan (segment 1 $ range 0.25 0.75 $ rand)) . (|+ n 5) . (# coarse 4)))
+  $ sometimesBy 0.5 (superimpose ((slow 2) . (|+ n 12) . (# pan (segment 1 $ range 0.25 0.75 $ rand)). (# coarse 4)))
+  $ slow 4
+  $ every 3 (shuffle 8)
+  $ n (scale "major" (cat ["[0 2]*4", randcat ["[-1 2]*2 [0 [0-1] 0 0]", "[-1 2]*4"]])) |- n 12
+  # s "superstri"
+  # duty 0.5
+  # lopprop 4
+  # orbit 0
+
+d2
+  $ someCyclesBy 0.5 (stutWith 8 0.5 ((|* coarse 2) . (|* gain 0.95)))
+  $ gain (randcat ["<[[1 0.65 0.65 0.65] ~] ~>", "<~ [~ [0.65 0.65 0.65 1]]>"])
+  # s "bd"
+  # sustain 0.1
+  # lpf 2000 # coarse 8 # orbit 1 # room 0.75 # size 0.9 # dry 0.1
+  # pan (segment 1 $ rand)
+
+d3
+  $ gain (randcat ["~ ~ ~ 1 1 ~ 1 1", "~ ~ ~ 1 1 ~ ~ ~"])
+  # s "hc"
+  # sustain 0.1
+  # lpf 750
+  # orbit 1 # room 0.75 # size 0.9 # dry 0.1
+
+d2 silence
+d3 silence
+
+hush
