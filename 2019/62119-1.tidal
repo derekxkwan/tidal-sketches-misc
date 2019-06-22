@@ -1,0 +1,27 @@
+-- weird autechre-y but 4/4 jam
+
+d1
+  $ within (0.25, 1) (someCyclesBy 0.5 ((degradeBy 0.25). (superimpose ((fast 2) . (|+ n (choose [3,6, 9]))
+                                                                        . (# room 0.75) . (# size 0.75) . (# dry 0.1) . (# orbit 1) . (# hpf 1000)
+                                                                      ))))
+  $ sometimesBy 0.25 (stutWith 8 0.5 (|+ voice 1) . (|* shape 1.01))
+  $ sometimesBy 0.75 (ply 2)
+  $ someCyclesBy 0.25 (slow 1.5)
+  $ someCyclesBy 0.25 (shuffle 2)
+  $ n (randcat ["0 12 [~ 0*2] [[12 0] ~]", " [0 12] 12 0*2 12"]) |- n 6
+  # s "super808"
+  # shape 0.85
+  # lpf 2000
+  # voice 1
+  # orbit 0
+
+d2
+  $ someCyclesBy 0.25 ((slow 1.5) . (# shape 0.9) . (# lpf 2000))
+  $ sometimesBy 0.25 (ply 2)
+  $ sometimesBy 0.75 (ply 2)
+  $ gain "[1 0.6]*4"
+  # s "superhat"
+  # orbit 0
+
+xfadeIn 2 4 silence
+xfadeIn 1 8 silence
