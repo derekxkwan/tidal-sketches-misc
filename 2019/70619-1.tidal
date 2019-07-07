@@ -1,0 +1,32 @@
+-- silly organy sorta chanty jam
+
+d1
+  $ someCyclesBy 0.5 (superimpose (|+ up 12) . (rev) . (fast 2) . (# pan (rand)))
+  $ someCyclesBy 0.5 (superimpose (|- up 12) . (iter 3) . (slow 2) . (# pan (rand)))
+  $ someCyclesBy 0.5 (superimpose (|+ up 12) . (rev) . (# pan (rand)))
+  $ every 3 (fast (segment 1 $ (choose [1.5,2])))
+  $ someCyclesBy 0.5 (ply 2)
+  $ someCyclesBy 0.5 ((|+ n 5) . (fast 2) . (rev))
+  $ n (randcat ["0 1", "0 ~ 4 4", "0 ~ 4 5", "0 1 2 3"])
+  # s "latibro"
+
+d2
+  $ someCyclesBy 0.5 (superimpose (|+ up 12) . (rev) . (# pan (rand)))
+  $ every 3 (fast (segment 1 $ (choose [1.5,2])))
+  $ someCyclesBy 0.5 (degradeBy 0.5)
+  $ someCyclesBy 0.5 (ply 4)
+  $ someCyclesBy 0.5 (|+ n 3)
+  $ up "4 0 4 0" |- up 12
+  # s "mouth:1"
+  # vowel (randcat ["e o e o", "i a i"])
+  # shape 0.5
+  # cut 2
+
+d3
+  $ someCyclesBy 0.5 (superimpose (|+ up 12) . (rev) . (# pan (rand)))
+  $ every 4 (rev)
+  $ every 3 (fast (segment 1 $ (choose [1.5,2])))
+  $ someCyclesBy 0.5 (ply 2)
+  $ s "bd sn*2 bd ~"
+
+hush  
