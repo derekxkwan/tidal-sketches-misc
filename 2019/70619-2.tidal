@@ -1,0 +1,43 @@
+-- weird bitlike jam
+
+d1
+  $ sometimesBy 0.5 (stutWith (choose [4,8]) 0.125 ((|* speed  0.9) . (# pan (rand))))
+  $ someCyclesBy 0.25 ((# shape 0.75) . (# crush 4). (# lpf 1000))
+  $ sometimesBy 0.9 (|+ up 12)
+  $ every 3 ((iter 3) . (ply 2))
+  $ n (randcat ["0 1", "0 [1 2]", "0 [2 [1 2]]"])
+  # s "hit"
+  # coarse 8
+  # cut 1
+  # lpf 5000
+
+d2
+  $ someCyclesBy 0.5  (fast 2)
+  $ fast 4
+  $ up (randcat ["12", "12 6"]) |- up 12
+  # s "house"
+  # coarse 4
+  # shape 0.55
+  # lpf 2000
+
+
+d3
+  $ sometimesBy 0.5 (|+ up 12)
+  $ sometimesBy 0.5 (ply 2)
+  $ sometimesBy 0.5 (fast 2)
+  $ up (randcat [" ~ 0 ~ ~", " ~ 0 0 ~", "~ 0 0 0*2"]) |- up 6
+  # n "1"
+  # s "808sd"
+  # coarse 4
+  # shape 0.5
+
+d4
+  $ within (0.5,  1) (sometimesBy 0.5 ((|+ up 12) . (# pan (rand))))
+  $ within (0.5,  1) (sometimesBy 0.5 ((|+ up 12) . (# pan (rand))))
+  $ within (0, 0.5) (sometimesBy 0.5 (ply 2))
+  $ someCyclesBy 0.5 (ply 2)
+  $ fast 4
+  $ s "hc ho"
+  # cut 4
+  
+hush  
