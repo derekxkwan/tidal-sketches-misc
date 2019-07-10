@@ -1,0 +1,22 @@
+-- triangle jam
+
+d1
+  -- $ someCyclesBy 0.25 (superimpose ((fast 2) . (|+ up 12) . (# pan (segment 1 $ rand))))
+  $ every 4 (iter 4)
+  $ n (randcat ["0 2 3 4 1 2 3", "0 3 2 1 2 1 0"])
+  # s "tink"
+
+d2
+  $ someCyclesBy 0.5 (stutWith (cycleChoose [8, 16]) (cycleChoose [0.125, 0.25]) ((|* gain 0.99) . (|* speed (cycleChoose [0.9, 0.91 .. 0.95])) . (# pan (cycleChoose [0, 0.1 .. 1]))))
+  $ someCyclesBy 0.35 (chop 4)
+  $ slow 4
+  $ up (randcat ["12", "12 6", "12 8.5 6 4.5"])
+  # s "tink:2"
+
+d3
+  $ someCyclesBy 0.25 (superimpose ((fast 2) . (|+ up 24) . (# pan (segment 1 $ rand))))
+  $ every 3 (iter 4)
+  $ n (randcat ["0 1 2 3", "0 0 2 2"]) |- n 12
+  # s "tink"
+
+hush
