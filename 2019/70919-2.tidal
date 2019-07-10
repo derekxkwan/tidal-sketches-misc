@@ -1,0 +1,43 @@
+setcps 1
+
+-- trappy i-iv minor arpeggio piano stuff
+let p1 = "[0 2 3 4]*4"
+    p2 = "[3 5 6 7]*4"
+in
+d1
+  $ someCyclesBy 0.5 (superimpose ((#pan 0.5). (fast 0.75) .(|- n 12). (degradeBy 0.5)))
+  $ someCyclesBy 0.5 (superimpose ((#pan 0). (fast 0.5) .(|+ n 12). (degradeBy 0.5)))
+  $ someCyclesBy 0.5 (superimpose ((# pan 1) . (fast 0.5) .(|+ n 12). (degradeBy 0.5)))
+  $ someCyclesBy 0.5 (within (0.25, 1) (degradeBy 0.5))  
+  $ sometimesBy 0.5 (stutWith 4 0.25 (|+ coarse 1))
+  $ slow 2
+  $ n (scale "minor" (slowcat [p1, p1, p1, p1, p2, p2, p2, p2])) |+ n 12
+  # s "superpiano" # sustain 0.1 # cut 0 # orbit 0 # coarse 2
+  # hpf 1000 # room 0.9 # size 0.9 # dry 0.7 # lpf 2000
+
+
+d2
+  $ someCyclesBy 0.5 (ply 2)
+  $ slow 2
+  $ sometimesBy 0.5 (stutWith 8 0.25 ((|+ coarse 2). (|* gain 0.95) . (|* speed "-1")))
+  $ n (randcat ["~ 0*4 ~ ~", "~ 0*4 ~ 0*2"])
+  # s "hc"
+  # hpf 1000 # orbit 1 # room 0.3 # size 0.5 # dry 0.5 # lpf 2000
+
+d3
+  $ sometimesBy 0.25 (superimpose  ((ply 2) . (|* speed "-2")))
+  $ slow 2
+  $ up (randcat ["~ ~ 0 ~ ", "~ ~ 0 -12*2"])
+  # s "bd"
+  # speed 0.5
+  # lpf 100 # orbit 1 # room 0.3 # size 0.5 # dry 0.5 # cut 0
+
+let p1 = "0 0? [-3*2 ~] ~ "
+    p2 = "3 3? [0*2 ~] ~"
+in
+d4
+  $ slow 4
+  $ within (0.5,1) (|* sustain 0.25)
+  $ n (scale "minor" (slowcat [p1, p1, p2, p2])) |- n 36
+  # s "superpiano" # sustain 0.75 # cut 0 # orbit 0
+  # room 0.9 # size 0.9 # dry 0.7 # lpf 1000 # coarse 32 # crush 6 #lpf 100
