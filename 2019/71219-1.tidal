@@ -1,0 +1,40 @@
+setcps 0.75
+
+-- triangle jam
+xfadeIn 1 4 silence
+xfadeIn 2 4 silence
+xfadeIn 3 4 silence
+xfadeIn 4 4 silence
+
+d1
+  $ someCyclesBy 0.25 (superimpose ((|* speed 0.5) . rev . fast 2))
+  $ every 4 (shuffle 2)
+  $ every 3 (rev)
+  $ someCyclesBy 0.25 (fast 2)
+  $ slow 2
+  $ up "4 3 2 1 0 0 0 0"
+  # s "tink"
+  # cut 0
+  # shape 0.5
+
+d2
+  $ someCyclesBy 0.25 (fast 2)
+  $ someCyclesBy 0.5 (within (0.125, 1) (ply 2))
+  $ slow 2
+  $ s "bd*4 sd [~ bd*2] sd"
+  # n 2
+
+d3
+  $ someCyclesBy 0.25 (fast 2)
+  $ every 3 (shuffle 4)
+  $ slow 2
+  $ up " ~ 0 2 2 ~ 0 <2 2 2 3> 2"
+  # s "rm"
+
+d4
+  $ someCyclesBy 0.25 (superimpose ((|* speed 0.5) . rev . fast 2))
+  $ slow 8
+  $  n " 0 0 1 1 0 0 0 0"
+  # s "cr"
+  # lpf 3000
+
