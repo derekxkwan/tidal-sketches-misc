@@ -1,0 +1,51 @@
+setcps 0.8
+
+let p1 = "0 4 8 6 0 4 8"
+    p2 = "0 4 9 7 0 4 9"
+    p3 = "0 4 10 8 0 4 10"
+    p4 = "0 4 11 9 0 4 11"
+    sc1 = [p1]
+    sc2 = [p1, p1, p1, p1, p2, p2, p2, p2]
+    sc3 = [p3, p3, p3, p3, p2, p2, p2, p2]
+    sc4 = [p4, p4, p3, p3, p2, p2, p3, p3]
+    lp1 = 500
+    lp2 =  1000
+    lp3 =  2000
+    curlp = lp1
+    curp = sc1
+    stutch = 0
+    stut2ch = 0
+in
+xfadeIn 1 4
+  $ someCyclesBy stut2ch (stutWith 3 (1/7) ((|* gain 0.9) . (|+ n 12) . (# pan (rand))))
+  $ someCyclesBy stutch (stutWith 3 (1/14) ((|* gain 0.8) . (|+ n 12) . (# pan (rand))))
+  $ n (scale "major" $ cat curp) |- n 24
+  # s "superssq"
+  # sustain 0.05
+  # duty 0.35
+  # lpf curlp
+
+let p1a = "bd bd ~ ~ ~ ~ ~"
+    p2a = "bd bd  ~ ~ sd ~ ~"
+    p2b = "bd bd ~ ~ sd ~ sd"
+    p3a = "bd bd hh*2 hh*2 sd ~ ~"
+    p3b = "bd bd hh*2 hh*2 sd bd sd"
+    sp1 = [p1a]
+    sp2 = [p2a, p2a, p2a, p2b]
+    sp3 = [p3a, p3a, p3a, p3b]
+    stutch =  0
+    supch = 0
+    fixs =  "[hh, bd]"
+    curp = sp1
+in
+xfadeIn 2 4
+  $ someCyclesBy supch (superimpose  ((((1/7) ~> ) . (|* speed 2) . (|* gain  0.8) . (|+ coarse 4))))
+  $ fix (sometimesBy stutch (stutWith 3 (1/14) (|* gain 0.9))) (s fixs)
+  $ s (cat curp)
+  # n 0
+  # speed 1
+  # shape 0.5
+  # sustain 0.075
+  # coarse 4
+
+hush
