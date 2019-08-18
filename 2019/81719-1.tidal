@@ -1,0 +1,57 @@
+-- chillout 4/4 breakbeat major sorta thing
+
+let p1 = "0 4 2 6 1 6 -1 4"
+in
+d1
+  $ slow 4
+  $ stutWith 8 (0.125/4) (|* gain 0.925)
+  $ n (scale "major" p1) |+ n 0
+  # s "superstri"
+  # legato 0.1
+  # coarse 16
+  # lpf 800
+  
+let p1 = "[kick  ~ ~ kick] snare kick ~"
+    p1a = "kick snare ~ ~"
+    p2 = "[kick  ~ ~ kick] snare [kick kick] [snare snare]"
+    p2a = "[kick  ~ ~ kick] snare [kick kick] [snare kick]"
+in
+d2
+  $ someCyclesBy 0.5 (stutWith 4 (5/8) (|* gain 0.9))
+  $ someCyclesBy 0.5 (shuffle 2)
+  $ within (0.5, 1) (sometimesBy 0.5 (ply 2))
+  $ s (cat [p1, randcat[p1, p1a], randcat[p1, p1a], randcat [p2, p2a]])
+  # speed 1.25
+  # sustain 0.25
+  # coarse 8
+  # crush 8
+  # n 3
+  # lpf 3000
+
+let p1 = "0 ~ 2 ~ 1 ~ -1 ~"
+in
+d3
+  $ slow 4
+  $ stutWith 4 (0.125/4) (|* gain 0.925)
+  $ n (scale "major" p1) |- n 24
+  # s "superstri"
+  # legato 0.15
+  # coarse 4
+  # shape 0.9
+  # lpf 5000
+  # gain 0.8
+
+let p1 = "hhclosed*4"
+    p2 = "hhclosed hhclosed hhclosed [hhclosed hhopen]"
+    p3 = "hhclosed hhclosed [hhclosed hhopen] [hhclosed hhopen]"
+in
+d4
+  $ fix (# sustain 0.05) ("s [hhclosed]")
+  $ within (0, 0.5) (sometimesBy 0.35 (ply 2))
+  $ sometimesBy 0.5 (stutWith 4 (0.25/4) (|* gain 0.925))
+  $ s (randcat [p1, p2, p3])
+  # cut 4
+  # n 0
+  # shape 0.75
+  # speed 2
+  # gain 0.8
