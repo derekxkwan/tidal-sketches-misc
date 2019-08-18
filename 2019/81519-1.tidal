@@ -1,0 +1,30 @@
+--cheesy minor 3/4 thing
+
+hush
+
+d1
+  $ slow 4
+  $ someCyclesBy 0.5 (superimpose ((|+ n 12) . (|* coarse "0.5") . (|* gain 0.9) . fast (cycleChoose [2, 4])))
+  $ n (scale "major" "2 4 -1 2 4 -1 2 4 -1 2 4 6")
+  # s "superpiano"
+  # coarse "8"
+
+d2
+  $ slow 8
+  $ sometimesBy 0.5 (stutWith 4 (0.125/8) ((|* gain 0.95) . (|+ n 12)))
+  $ n (scale "major" "0 0 -1 -1") |+ n "-12"
+  # s "superpiano"
+  # coarse "8"
+
+d3
+  $ slow 2
+  $ up "0 ~ ~ 3 ~ [~ 0]"
+  # s "bd"
+
+d4
+  $ ((1/3) ~>)
+  $ someCyclesBy 0.25 (stutWith 8 (1/24) ((|* speed 0.9) . (|* gain 0.9)))
+  $ someCyclesBy 0.25 (ply 2)
+  $ up "0 0"
+  # s "hc"
+  # vowel "u"
