@@ -1,0 +1,65 @@
+--3:4 trap city
+
+setcps 0.525
+
+let p1 = "10*4 30*4"
+    p2 = "[21*2 25*2] 50*2"
+    p3 = "[21*2 11] 50*4"
+in
+d1
+  $ whenmod 4 3 (within (0.5, 1) (someCyclesBy 0.5 (ply 2)))
+  $ slice 64 (cat [p2, p3, p2, p1])
+  $ s "chimes"
+  # n 14
+  # cut 1
+  # speed 1.5
+  # gain 1.25
+  # lpf 2000
+  # orbit 1
+  # dry 0.75
+  # size 0.2
+  # room 0.75
+
+d2
+  $ up "0*4 ~ 0*8" 
+  # s "sidestick"
+  # n 0
+  # speed 0.75
+  # cut 2
+  # orbit 2
+  # dry 0.75
+  # size 0.8
+  # room 0.2
+  # gain 0.55
+  # shape 0.95
+  # lpf 3000
+  
+let p1 = "bd cp:2"
+    p2 = "[bd ~ ~ bd] cp:2"
+    p3 = "[bd ~ ~ bd] [cp:2 bd]"
+in    
+d3
+  $ whenmod 2 1 (fix (someCyclesBy 0.5 (ply 2)) ("s cp"))
+  $ fix (|* speed 0.75) ("s bd")
+  $ s (cat [p1, p2, p1, p3])
+  # shape 0.7
+  # orbit 2
+  # dry 0.75
+  # size 0.3
+  # room 0.1
+  # gain 0.8
+  # shape 0.8
+  # lpf 3000
+
+d4
+  $ fix (# sustain 0.1) ("s hhclosed")
+  $ within(0.75, 1) (someCyclesBy 0.75 (ply (cycleChoose [2,4])))
+  $ within(0, 0.25) (someCyclesBy 0.75 (ply 2))
+  $ s "[hhclosed*2 hhopen] hhclosed*4"
+  # cut 5
+  # shape 0.85
+  # speed 1
+  # gain 0.6
+  
+
+hush  
