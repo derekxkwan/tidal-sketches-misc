@@ -1,0 +1,48 @@
+--beautiful reversed sparse beats
+
+setcps 0.5
+
+let p1 = "12 11 12 11 7"
+    p2 = "12 11 12 11 7 11"
+    p3 = "12 11 7 11"
+in
+d1
+  $ superimpose (slow 1.5 . (|+ up 12) . (# orbit 1))
+  $ superimpose (slow 1.5 . (|+ up 12) . (# orbit 1))
+  $ degradeBy 0.5
+  $ up (randcat [p1, p2, p3])
+  # s "cling"
+  # speed (-1)
+  # n 4
+  |- up 24
+  # delayfb 0.45
+  # delay 0.85
+  # delayt 0.75
+  # orbit 1
+  # gain 0.8
+  # dry 0.05
+  # room 0.75
+  # size 0.5
+
+  -- # sustain 0.5
+  -- # begin 0.025
+
+let p1 = "house:0"
+    p2 = "house:0 house:2"
+in
+d2
+  $ fix (|* speed 0.5) ("s [house:0]")
+  $ slow 2
+  $ s (cat [p1, p2])
+  # cut 1
+  # speed 0.5
+  # delayt 0.2
+  # delayfb 0.75
+  # delay 0.75
+  # orbit 2
+  # dry 0.1
+  # room 0.8
+  # size 0.8
+
+hush
+ 
