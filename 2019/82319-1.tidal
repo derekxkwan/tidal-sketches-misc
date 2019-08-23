@@ -1,0 +1,31 @@
+-- minor bottle jam
+
+setcps 1.1
+
+let p1 = "{3 1*4 2*8}%4"
+    p2 = "5 10 17*4 20*4"
+in
+d1
+  $ someCyclesBy 0.5 (superimpose ((|* speed (-2)) . (# end 0.5)))
+  $ whenmod 2 1 ((|* speed (cycleChoose [1.5, 1.25, 2])) . (# pan (rand)))
+  $ n (cat [p1, p1, p1, p2])
+  # s "bottle"
+  # cut 1
+  # speed 1
+  # gain 0.9
+  
+let p1 = "3 1 2 5"
+    p2 = "3 1*4 5 5*8"
+in    
+d2
+  $ someCyclesBy 0.75 (superimpose ((# cut 2) . (|* gain 1.2) . (|* speed (choose [0.5, 0.25])) . (# begin 0.1) . slow 2 . (#end 0.2) . (# orbit 2) . (# room 0.9) . (# size 0.8) . (# dry 0.1) ))
+  $ whenmod 2 1 (someCyclesBy 0.35 (shuffle 2))
+  $ whenmod 2 1 (someCyclesBy 0.5 (fast 2))
+  $ n (cat [p1, p1, p1, p2])
+  # s "bottle"
+  # speed 0.25
+  # gain 0.8
+
+
+d1 silence
+hush
