@@ -1,0 +1,41 @@
+--chill yet active chimes jam
+
+setcps 0.5225
+
+let p1 = "0 1"
+    p1a = "0 [1 0]"
+    p2 = "4 5*4"
+in
+d1
+  $ sometimesBy 0.5 (superimpose ((# pan (rand)) . (|* speed (choose [2,2,2,4])) . fast 2 . (# coarse (choose [4,6]))))
+  $ slow 2
+  $ within (0.5, 1) (sometimesBy 0.5 (ply 2))
+  $ slice 32 (cat [p1, p1a, p1, p2])
+  $ s "chimes"
+  # legato 1
+  # n 4
+  # gain 1.3
+  # speed 0.5
+
+let p1 = "[[-36 0] -36] 0*4 [[-36 0] -36] [[0 -36] -36]"
+    p2 = "[[-36 0] -36*2] [[0 -36] 0] [-36 0]*2 [[0 -36] 0]"
+in 
+d2
+  $ fix (# vowel "e") (n "0")
+  $ fix (|* sustain 1.5) (n "-36")
+  $ someCyclesBy 0.5 (within ((13/16), 1) (degradeBy 0.25))
+  $ someCyclesBy 0.5 (within ((9/16), 0.75) (degradeBy 0.5))
+  $ someCyclesBy 0.5 (within ((5/16), 0.5) (degradeBy 0.25))
+  $ someCyclesBy 0.5 (within ((1/16), 0.25) (degradeBy 0.5))
+  $ within (0.75, 1) (sometimesBy 0.5 (ply 2))
+  $ within (0.25, 0.5) (sometimesBy 0.5 (ply 2)) 
+  $ n (cat [p1, p2])
+  # s "supernoise"
+  # sustain 0.005
+  # voice 1
+  # shape 0.75
+  # gain "[1 0.9 0.9 0.9]*4"
+
+
+
+hush
