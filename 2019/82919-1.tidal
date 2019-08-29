@@ -1,0 +1,37 @@
+-- floaty and bowy
+
+setcps 0.525
+
+let p1 = "0 7 1"
+in
+d1
+  $ slow 3
+  $ whenmod 4 3 (shuffle 3)
+  $ up (scale "minor" p1)
+  # s "bowedhh"
+  # n "<2 2 2 1>"
+  # orbit 3
+
+let p1 = "[1 0.8 0.8 0.8]*4"
+    p2 = "~"
+    s1 = "hhclosed*4 hhclosed bd? ~"
+    s2 = "bd? sidestick?"
+    s3 = "bd"
+    s4 = "hhclosed*4 hhclosed sidestick? ~"
+in
+d2
+  $ outside 4 (rot "0 1 2 3")
+  $ fix ((# orbit 2) . (# delayt 0.25) . (# delay 0.75) . (# delayfb 0.8) . (|* speed 2)) (s "sidestick")
+  $ fix ((# orbit 2) . (# delayt 0.25) . (# delay 0.75) . (# delayfb 0.8)) (s "bd")
+  $ fix (stutWith 8 (1/4) ((|* gain 0.9) . (|* lpf 0.9))) (s "hhclosed")
+  $ shuffle 2
+  $ s (cat [s1, s2, s3, s4])
+  # pan (cycleChoose [0, 0.1 .. 1])
+  # gain (cat [p1, p2])
+  # lpf 7500
+  
+  
+  
+  
+
+hush  
