@@ -1,0 +1,30 @@
+setcps 0.425
+
+let p1 = "[[0 0?] ~] [[-3 -3?] ~] [[0 0?] [~ -3]] [~ [~ 0]] [~ 0] [-3 -3?] [0 0?] -3"
+    p2 = "[[0 0?] ~] [[-3 -3?] ~] [[0 0?] [~ 2]] [~ [~ 0]] [~ 2] [-3 -3?] [0 2?] -3"
+in
+d1
+  $ sometimesBy 0.95 (stutWith 6 (1/8) ((|+ note 12) . (|* gain 0.9) . (# shape 0.1) . (# lpf 7500) . (# pan (rand)) . (#sustain 0.2)))
+  $ slow 2
+  $ note (cat [p1, p2]) |- note 24
+  # s "superssq" # lpf 1000 # duty 0.1 # shape 0.5 # gain 0.8
+
+let p1 = "[~ [1 0.8?]] [~ 1] [~ [1 0.8?]] [[~ 0.8?] [1 0.8?]] [~ [1 0.8?]] [[~ 0.8?] 1] [~ [1 0.8?]] [[~ 0.8?] [0.8? 1]]"
+in
+d2
+  $ stutWith 8 (5/16) ((|* gain 0.8) . (|* lpf 0.9) . (# speed 2))
+  $ slow 2
+  $ gain p1  
+  # s "clap" # lpf 10000 # begin 0.02 # shape 0.75 |* gain 0.8
+  # n 1
+
+let p1 = "[midtom [~ lotom?]] lotom [midtom [~ lotom?]] lotom*2 [midtom [~ midtom?]] lotom [midtom [~ midtom?]] [lotom*2 [~ <~ midtom>]]"
+in
+d3
+  $ slow 2
+  $ fix (# n 3) (s "midtom")
+  $ fix (# n 5) (s "lotom")
+  $ s p1
+  # shape 0.8 # lpf 1000 # gain 0.8
+
+hush
